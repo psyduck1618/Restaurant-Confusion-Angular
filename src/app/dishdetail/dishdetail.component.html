@@ -8,31 +8,44 @@
 
   <div fxFlex="40">
     <div fxFlex *ngIf="dish">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>
-              <h3>{{dish.name | uppercase}}</h3>
-          </mat-card-title>
-    
-        </mat-card-header>
-      <img mat-card-image src={{dish.image}} alt={{dish.name}}>
-    <mat-card-content>
-    <p>{{selectedDish.description}}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LiKE </button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions> 
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+            <h3>{{dish.name | uppercase}}</h3>
+        </mat-card-title>
   
-    </mat-card>
-    
-    
-    
-    </div>
+      </mat-card-header>
+    <img mat-card-image src={{dish.image}} alt={{dish.name}}>
+  <mat-card-content>
+  <p>{{dish.description}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LiKE </button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions> 
+  
+  </mat-card>
+  
+  
+  
+  </div>
  
   </div>
  
   <div fxFlex="40">
-    <p>Display the list of comments here</p>
+  
+  
+   <div *ngIf="dish">
+    <mat-list fxFlex>
+     
+      <h1>Comments</h1>
+    <mat-list-item *ngFor="let d of dish.comments">
+       <p matLine>{{d.comment}}</p>
+      <p matLine>{{d.rating}} stars</p>
+      <p matLine>--{{d.author}} {{d.date | date}}</p>
+    </mat-list-item>
+    </mat-list>
+  
   </div>
+</div>
 </div>
