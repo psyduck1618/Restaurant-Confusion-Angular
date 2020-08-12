@@ -30,6 +30,7 @@ import {LeaderService} from './services/leader.service';
 import { LoginComponent } from './login/login.component';
 import {MatSelectModule} from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +54,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatToolbarModule,
     MatListModule,
     MatSliderModule,
+    MatProgressSpinnerModule,
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
