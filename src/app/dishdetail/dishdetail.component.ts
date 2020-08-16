@@ -1,4 +1,4 @@
-import { Component, OnInit ,ViewChild} from '@angular/core';
+import { Component, OnInit ,ViewChild,Inject} from '@angular/core';
 import {Params ,ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import { Dish } from '../shared/dish';
@@ -49,7 +49,8 @@ formErrors1= {
   constructor(private dishService:DishService,
     private route :ActivatedRoute,
     private location:Location,
-    private fb1:FormBuilder) { 
+    private fb1:FormBuilder,
+    @Inject('BaseURL') private BaseURL) { 
       this.createForm1();
     }
    
