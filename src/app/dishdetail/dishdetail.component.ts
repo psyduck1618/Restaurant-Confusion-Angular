@@ -24,8 +24,8 @@ errMess: string;
   dishIds:string[];
   prev:string;
   next:string;
-  @ViewChild('fform1') feedbackFormDirective; // reset frm in template
-
+@ViewChild('fform1') feedbackFormDirective; // reset frm in template
+dishcopy :Dish;
 formErrors1= {
   'author':'',
   'rating': '',
@@ -68,7 +68,7 @@ formErrors1= {
     this.feedbackForm1.get('author');
     this.route.params
     .pipe(switchMap((params:Params)=> this.dishService.getDish(params['id'])))
-    .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id);},
+    .subscribe(dish => { this.dish = dish;this.dishcopy=dish; this.setPrevNext(dish.id);},
      errmess => this.errMess = <any>errmess);
   }
   setPrevNext(dishId:string){
@@ -125,8 +125,14 @@ formErrors1= {
      
     });
     
-    this.dish.comments.push(this.feedback1); //push after submit
-    
+    //this.dish.comments.push(this.feedback1); //push after submit
+    this.dishcopy.comments.push(this.feedback1);
+    this.dishService.putDish(this.dishcopy)
+      .subscribe(dish => {
+        this.dish = dish; this.dishcopy = dish;
+      },
+      errmess => { this.dish = null; this.dishcopy = null; this.errMess = <any>errmess; });
+
     this.feedbackFormDirective.resetForm({
       author: '',
       rating: 5,
