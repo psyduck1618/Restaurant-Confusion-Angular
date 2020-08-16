@@ -19,7 +19,7 @@ export class DishdetailComponent implements OnInit {
 //@Input()
 feedbackForm1:FormGroup;
 feedback1: Comment;
-
+errMess: string;
   dish: Dish;
   dishIds:string[];
   prev:string;
@@ -68,7 +68,8 @@ formErrors1= {
     this.feedbackForm1.get('author');
     this.route.params
     .pipe(switchMap((params:Params)=> this.dishService.getDish(params['id'])))
-    .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id)});
+    .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id);},
+     errmess => this.errMess = <any>errmess);
   }
   setPrevNext(dishId:string){
     const index = this.dishIds.indexOf(dishId);

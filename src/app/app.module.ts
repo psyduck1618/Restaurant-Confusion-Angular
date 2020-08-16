@@ -23,10 +23,18 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
-import {DishService} from './services/dish.service';
 import  {AppRoutingModule } from './app-routing/app-routing.module';
+
+
+
+import {DishService} from './services/dish.service';
 import {PromotionService } from './services/promotion.service';
 import {LeaderService} from './services/leader.service';
+import { ProcessHTTPMsgService} from './services/process-httpmsg.service';
+
+
+
+
 import { LoginComponent } from './login/login.component';
 import {MatSelectModule} from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -80,6 +88,7 @@ import { HttpModule } from '@angular/http';
   providers: [DishService,
     PromotionService,
     LeaderService,
+    ProcessHTTPMsgService,
     {provide: 'BaseURL', useValue: baseURL}
   ],
   bootstrap: [AppComponent]
