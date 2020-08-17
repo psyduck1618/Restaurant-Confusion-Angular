@@ -43,6 +43,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { baseURL } from './shared/baseurl';
 import { HttpModule } from '@angular/http';
+import { HighlightDirective } from './directives/highlight.directive';
 
 
 
@@ -56,7 +57,8 @@ import { HttpModule } from '@angular/http';
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,

@@ -9,10 +9,24 @@ import {FormBuilder,FormGroup,Validators} from '@angular/forms';
 import { Comment  } from '../shared/comment';
 import { DISHES } from '../shared/dishes';
 import { Subscription } from 'rxjs';
+//import { trigger, state, style, animate, transition } from '@angular/animations';
+import { visibility ,flyInOut,expand} from '../animations/app.animation';
+
+
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
-  styleUrls: ['./dishdetail.component.scss']
+  styleUrls: ['./dishdetail.component.scss'],
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+    },
+    animations: [
+      flyInOut(),
+      visibility(),
+      expand()
+    ]
+ 
 })
 export class DishdetailComponent implements OnInit {
 //data binding
@@ -24,6 +38,7 @@ errMess: string;
   dishIds:string[];
   prev:string;
   next:string;
+  visibility = 'shown';
 @ViewChild('fform1') feedbackFormDirective; // reset frm in template
 dishcopy :Dish;
 formErrors1= {
@@ -67,9 +82,9 @@ formErrors1= {
     .subscribe((dishIds)=>this.dishIds = dishIds);
     this.feedbackForm1.get('author');
     this.route.params
-    .pipe(switchMap((params:Params)=> this.dishService.getDish(params['id'])))
-    .subscribe(dish => { this.dish = dish;this.dishcopy=dish; this.setPrevNext(dish.id);},
-     errmess => this.errMess = <any>errmess);
+    .pipe(switchMap((params:Params)=>{this.visibility = 'hidden'; return this.dishService.getDish(params['id']);}))
+    .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); this.visibility = 'shown'; },
+    errmess => this.errMess = <any>errmess);
   }
   setPrevNext(dishId:string){
     const index = this.dishIds.indexOf(dishId);
